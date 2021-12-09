@@ -3,6 +3,8 @@ read -p 'enter your age: ' age
 
 if [ -z "${age}" ]; then
   echo input missing
+  exit
+fi
 
 if [ "${age}" -lt 18 ]; then
   echo u are minor
