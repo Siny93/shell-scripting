@@ -16,6 +16,7 @@ sample1()
 sample2(){
   echo first argument = $1
   echo number of arguments = $#
+  a=300
   echo a in function = ${a}
   b=400
 }
