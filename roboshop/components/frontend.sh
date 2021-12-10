@@ -1,18 +1,17 @@
 echo frontend setup
 
-
+STAT_CHECK(){
+  if [ $1 -ne 0 ]; then
+    echo "nginx install failed"
+    exit 1
+  fi
+}
 yum install nginx -y
-if [ $? -ne 0 ]; then
-  echo "nginx install failed"
-  exit 1
-fi
+
 
 
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zi"
-if [ $? -ne 0 ]; then
-  echo "download failed"
-  exit 1
-fi
+
 
 cd /usr/share/nginx/html
 rm -rf *
