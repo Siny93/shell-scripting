@@ -27,5 +27,5 @@ a=100
 
 sample2 123 xyz
 
-echo value of b from main = ${b}
+echo ${b}
 
