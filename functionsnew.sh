@@ -17,13 +17,13 @@ sample2(){
   echo first argument = $1
   echo number of arguments = $#
   echo a in function = ${a}
-  b = 400
+  b=400
 }
 
 ## main pgm
 
 
-a = 100
+a=100
 
 sample2 123 xyz
 
