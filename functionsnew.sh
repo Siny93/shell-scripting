@@ -7,11 +7,18 @@ function sample(){
   echo two
 }
 
-sample2()
+sample1()
 {
   echo three
   echo four
 }
 
+sample2(){
+  echo first argument = $1
+  echo number of arguments = $#
+}
+
 sample
-sample2
+sample1
+sample2 123 xyz
+
