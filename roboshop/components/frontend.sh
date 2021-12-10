@@ -7,6 +7,7 @@ STAT_CHECK(){
   fi
 }
 yum install nginx -y
+STAT_CHECK $?
 
 
 
