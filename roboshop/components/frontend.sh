@@ -18,14 +18,19 @@ STAT_CHECK $? "nginx installation"
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 STAT_CHECK $? "download frontend"
 
-cd /usr/share/nginx/html
-rm -rf *
-unzip /tmp/frontend.zip
-mv frontend-main/* .
-mv static/* .
-rm -rf frontend-master static README.md
-mv localhost.conf /etc/nginx/default.d/roboshop.conf
+rm -rf /usr/share/nginx/html/*
+STAT_CHECK $? "remove old html files"
 
-systemctl enable nginx
-systemctl start nginx
+cd /tmp && unzip /tmp/frontend.zip &>>${LOG_FILE}
+STAT_CHECK $? "remove old html files"
+
+cd /tmp/frontend-main/static/ && cp -r * /usr/share/nginx/html/
+STAT_CHECK $? "copying frontend content"
+
+cd /tmp/frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
+STAT_CHECK $? "update nginx configuration file"
+
+
+systemctl enable nginx &>>${LOG_FILE} && systemctl start nginx &>>${LOG_FILE}
+STAT_CHECK $? "restart nginx"
 
