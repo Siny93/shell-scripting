@@ -27,7 +27,7 @@ STAT_CHECK $? "extracting frontend content"
 cd /tmp/frontend-main/static/ && cp -r * /usr/share/nginx/html/
 STAT_CHECK $? "copying frontend content"
 
-cd /tmp/frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
+cp /tmp/frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
 STAT_CHECK $? "update nginx configuration file"
 
 
