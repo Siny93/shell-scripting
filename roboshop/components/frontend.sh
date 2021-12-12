@@ -33,4 +33,3 @@ STAT_CHECK $? "update nginx configuration file"
 
 systemctl enable nginx &>>${LOG_FILE} && systemctl start nginx &>>${LOG_FILE}
 STAT_CHECK $? "restart nginx"
-
