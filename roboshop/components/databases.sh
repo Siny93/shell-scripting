@@ -52,9 +52,14 @@ STAT_CHECK $? "install rabbitmq and repo"
 
 systemctl enable rabbitmq-server &>>${LOG_FILE} && systemctl start rabbitmq-server &>>${LOG_FILE}
 
+rabbitmqctl list_users | grep roboshop &>>${LOG_FILE}
 
-rabbitmqctl add_user roboshop roboshop123
-STAT_CHECK $? "add user in rabbitmq"
+if [ $? -ne 0 ]; then
+
+rabbitmqctl add_user roboshop roboshop123 &>>${LOG_FILE}
+STAT_CHECK $? "create app user in rabbitmq"
+fi
+
 
 # rabbitmqctl set_user_tags roboshop administrator
  #rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
