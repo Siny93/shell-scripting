@@ -13,6 +13,7 @@ rm -rf /usr/share/nginx/html/*
 STAT_CHECK $? "remove old html files"
 
 
+
 cd /tmp/frontend-main/static/ && cp -r * /usr/share/nginx/html/
 STAT_CHECK $? "copying frontend content"
 

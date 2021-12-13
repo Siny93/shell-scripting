@@ -36,3 +36,6 @@ STAT_CHECK $? "Start mongodb service"
 
 DOWNLOAD mongodb
 
+cd /tmp/mongodb-main
+mongo < catalogue.js &>>${LOG_FILE} && mongo < users.js &>>${LOG_FILE}
+STAT_CHECK $? "Load schema"
