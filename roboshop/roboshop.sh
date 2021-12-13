@@ -7,6 +7,7 @@ fi
 
 export COMPONENT=$1
 
+
 if [ -z "$COMPONENT" ]; then
   echo -e "\e[1;31mcomponent input missing\e[0m"
   exit
