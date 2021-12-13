@@ -5,8 +5,6 @@ source components/common.sh
 yum install nginx -y &>>${LOG_FILE}
 STAT_CHECK $? "nginx installation"
 
-
-
 DOWNLOAD frontend
 
 rm -rf /usr/share/nginx/html/*
