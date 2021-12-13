@@ -38,3 +38,23 @@ STAT_CHECK $? "update redis config"
 
 systemctl enable redis &>>${LOG_FILE} && systemctl start redis &>>${LOG_FILE}
 STAT_CHECK $? "update redis"
+
+
+### Rabbitmq setup
+echo -e "  --------<<<<<<<<< RabbitMQ setup >>>>>>>----------"
+
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>>${LOG_FILE}
+STAT_CHECK $? "download rabbitmq repo"
+
+yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm rabbitmq-server -y &>>${LOG_FILE}
+STAT_CHECK $? "install rabbitmq and repo"
+
+
+systemctl enable rabbitmq-server &>>${LOG_FILE} && systemctl start rabbitmq-server &>>${LOG_FILE}
+
+
+rabbitmqctl add_user roboshop roboshop123
+STAT_CHECK $? "add user in rabbitmq"
+
+# rabbitmqctl set_user_tags roboshop administrator
+ #rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
