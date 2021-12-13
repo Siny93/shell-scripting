@@ -33,5 +33,6 @@ STAT_CHECK $? "Update mongodb service"
 
 systemctl enable mongod &>>${LOG_FILE} && systemctl start mongod &>>${LOG_FILE}
 STAT_CHECK $? "Start mongodb service"
+
 DOWNLOAD mongodb
 
