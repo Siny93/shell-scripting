@@ -22,12 +22,12 @@
 # mongo < users.js
 
 source components/common.sh
-curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
+curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>>${LOG_FILE}
 STAT_CHECK $? "Download mongodb repo"
 
-yum install -y mongodb-org
+yum install -y mongodb-org &>>${LOG_FILE}
 STAT_CHECK $? "Install mongodb"
 
-systemctl enable mongod
+systemctl enable mongod &>>${LOG_FILE} && systemctl start mongod &>>${LOG_FILE}
 STAT_CHECK $? "Start mongodb service"
 
