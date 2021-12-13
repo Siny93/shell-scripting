@@ -47,7 +47,7 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/sc
 STAT_CHECK $? "download rabbitmq repo"
 
 yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm rabbitmq-server -y &>>${LOG_FILE}
-STAT_CHECK $? "install rabbitmq and repo"
+STAT_CHECK $? "install rabbitmq and erlang"
 
 
 systemctl enable rabbitmq-server &>>${LOG_FILE} && systemctl start rabbitmq-server &>>${LOG_FILE}
@@ -61,5 +61,5 @@ STAT_CHECK $? "create app user in rabbitmq"
 fi
 
 
-# rabbitmqctl set_user_tags roboshop administrator
- #rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl set_user_tags roboshop administrator &>>${LOG_FILE} && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${LOG_FILE}
+STAT_CHECK $? "configure app user permissions"
