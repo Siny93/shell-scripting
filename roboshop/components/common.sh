@@ -12,3 +12,5 @@ STAT_CHECK()
 }
 
 set-hostname -skip-apply ${COMPONENT}
+
+
