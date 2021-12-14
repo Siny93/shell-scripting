@@ -79,9 +79,13 @@ systemctl enable mysqld &>>${LOG_FILE} && systemctl start mysqld &>>${LOG_FILE}
 STAT_CHECK $? "start mysql"
 
 DEFAULT_PASSWORD=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}')
+
+echo 'show databases;' | mysql -uroot -pRoboShop@1 &>>${LOG_FILE}
+if [ $? -ne 0 ]; then
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" >/tmp/pass.sql
 mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}" </tmp/pass.sql &>>${LOG_FILE}
 STAT_CHECK $? "setup new root password"
+fi
 
 
 #Now a default root password will be generated and given in the log file.
