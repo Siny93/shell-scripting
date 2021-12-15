@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo catalogue setup
+echo user setup
 
 source components/common.sh
 
