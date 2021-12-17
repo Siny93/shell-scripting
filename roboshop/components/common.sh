@@ -89,6 +89,7 @@ PYTHON() {
 
   APP_USER_SETUP
 
+
   cd /home/roboshop/${component} && pip3 install -r requirements.txt &>>${LOG_FILE}
   STAT_CHECK $? "install python dependencies"
   SYSTEMD_SETUP
