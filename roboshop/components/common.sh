@@ -100,6 +100,8 @@ GOLANG() {
   component=${1}
   yum install golang -y &>>${LOG_FILE}
   STAT_CHECK $? "installing golang"
+  APP_USER_SETUP
+
    cd /home/roboshop/${component} && go mod init dispatch &>>${LOG_FILE} && go get &>>${LOG_FILE} && go build &>>${LOG_FILE}
    STAT_CHECK $? "installing golang dependencies & compile"
 
