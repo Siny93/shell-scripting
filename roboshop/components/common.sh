@@ -84,7 +84,7 @@ SYSTEMD_SETUP
 
 PYTHON() {
   component=${1}
-  yum install python36 gcc python3-devel -y
+  yum install python36 gcc python3-devel -y &>>${LOG_FILE}
   STAT_CHECK $? "installing python"
 
   APP_USER_SETUP
