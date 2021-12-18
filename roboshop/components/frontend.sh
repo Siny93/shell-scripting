@@ -24,5 +24,5 @@ sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' \
        -e '/payment/ s/localhost/payment.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
   STAT_CHECK $? "update nginx configuration file"
 
-systemctl enable nginx &>>${LOG_FILE} && systemctl start nginx &>>${LOG_FILE}
+systemctl enable nginx &>>${LOG_FILE} && systemctl restart nginx &>>${LOG_FILE}
 STAT_CHECK $? "restart nginx"
