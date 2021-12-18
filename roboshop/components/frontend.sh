@@ -26,3 +26,5 @@ sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' \
 
 systemctl enable nginx &>>${LOG_FILE} && systemctl start nginx &>>${LOG_FILE}
 STAT_CHECK $? "restart nginx"
+
+
