@@ -15,7 +15,7 @@ STAT_CHECK $? "Install mongodb"
 sed -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>>${LOG_FILE}
 STAT_CHECK $? "Update mongodb service"
 
-systemctl enable mongod &>>${LOG_FILE} && systemctl start mongod &>>${LOG_FILE}
+systemctl enable mongod &>>${LOG_FILE} && systemctl restart mongod &>>${LOG_FILE}
 STAT_CHECK $? "Start mongodb service"
 
 DOWNLOAD mongodb
@@ -38,7 +38,7 @@ STAT_CHECK $? "install redis"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf &>>${LOG_FILE}
 STAT_CHECK $? "update redis config"
 
-systemctl enable redis &>>${LOG_FILE} && systemctl start redis &>>${LOG_FILE}
+systemctl enable redis &>>${LOG_FILE} && systemctl restart redis &>>${LOG_FILE}
 STAT_CHECK $? "update redis"
 
 
